@@ -75,6 +75,11 @@
   - npm
 
 ![image](https://user-images.githubusercontent.com/45603878/129758078-85f4f2cd-29f9-492a-af0c-6f2acc272f7d.png)
+![image](https://user-images.githubusercontent.com/45603878/129765022-cfc7086f-2c38-4d5a-b307-8a31b570914a.png)
+![image](https://user-images.githubusercontent.com/45603878/129765162-77b6d954-cdda-4913-9669-33c30a9e4819.png)
+
+
+
 
 # 起步
 
@@ -88,6 +93,10 @@
 - 确认Node环境是否安装成功
   - 查看node的版本号：`node --version`
   - 或者`node -v`
+  - shift+右键：可以打开cmd
+  - nodejs解析执行JS
+  - ![image](https://user-images.githubusercontent.com/45603878/129766237-0bd668ae-eddd-41ba-b50a-8abf799b866a.png)
+
 - 配置环境变量
 
 ## 解析执行JavaScript
@@ -95,6 +104,9 @@
 1. 创建编写JavaScript脚本文件
 2. 打开终端，定位脚本文件的所属目录
 3. 输入`node  文件名`执行对应的文件
+  - 解析执行JavaScript
+  - 读写文件
+  - http
 
 注意：文件名不要用`node.js`来命名，也就是说除了`node`这个名字随便起，最好不要使用中文。
 
@@ -123,6 +135,12 @@ fs.readFile('./data/a.txt',function(err,data){
     }
 })
 ```
+![image](https://user-images.githubusercontent.com/45603878/129767061-d87ae933-c982-4cfe-920a-dae7b54dbc7b.png)
+![image](https://user-images.githubusercontent.com/45603878/129767499-b8525030-7cb0-4b24-b60d-fc81b0827702.png)
+![image](https://user-images.githubusercontent.com/45603878/129767759-554608a6-589f-4249-bf88-17fc009f7dbc.png)
+![image](https://user-images.githubusercontent.com/45603878/129767895-f22f1c18-724c-46c9-bb0c-3c5cad4528c1.png)
+![image](https://user-images.githubusercontent.com/45603878/129768333-311eccd6-584e-4efd-ab7a-5f433e7ae158.png)
+浏览器只认识基础js代码和DOM，BOM，node的函数不认识
 
 文件写入：
 
