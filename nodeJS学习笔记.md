@@ -136,11 +136,16 @@ fs.readFile('./data/a.txt',function(err,data){
 })
 ```
 ![image](https://user-images.githubusercontent.com/45603878/129767061-d87ae933-c982-4cfe-920a-dae7b54dbc7b.png)
+
 ![image](https://user-images.githubusercontent.com/45603878/129767499-b8525030-7cb0-4b24-b60d-fc81b0827702.png)
+
 ![image](https://user-images.githubusercontent.com/45603878/129767759-554608a6-589f-4249-bf88-17fc009f7dbc.png)
+
 ![image](https://user-images.githubusercontent.com/45603878/129767895-f22f1c18-724c-46c9-bb0c-3c5cad4528c1.png)
+
 ![image](https://user-images.githubusercontent.com/45603878/129768333-311eccd6-584e-4efd-ab7a-5f433e7ae158.png)
-浏览器只认识基础js代码和DOM，BOM，node的函数不认识
+
+浏览器只认识基础js代码和DOM，BOM，不认识node的函数，有的能在浏览器运行，有的能在node服务器运行
 
 文件写入：
 
@@ -158,6 +163,16 @@ fs.writeFile('./data/a.txt','我是文件写入的信息',function(err,data){
     }
 })
 ```
+![image](https://user-images.githubusercontent.com/45603878/129769665-b57efc60-cab1-46ac-9d55-39839576b855.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129769753-39300ecd-ecc6-46d6-92e2-db1764955ed2.png)
+
+可以安装terminal插件
+返回的error对象会有详细信息
+![image](https://user-images.githubusercontent.com/45603878/129770200-acd15740-59fd-4d26-9abc-8df1266d9c45.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129770344-4c8c9f21-c334-446c-bff3-13a77a2f5cee.png)
+
 
 ## http
 
@@ -181,12 +196,28 @@ server.on('request',function(){
     console.log('收到客户的请求了')
 })
 
-// 4.绑定端口号，启动服务
+// 4.绑定端口号，启动服务，凡是涉及到网络通信的都要用到端口号
 server.listen(3000,function(){
     console.log('runing...')
 })
 
 ```
+![image](https://user-images.githubusercontent.com/45603878/129789865-45ce8e64-7bf2-4314-8888-031156c83769.png)
+终止用CTRL+c
+![image](https://user-images.githubusercontent.com/45603878/129790436-1773d50f-27ee-416b-846c-df768221b913.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129790409-ad84a537-a894-44fa-babc-c3f77d35bca5.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129790806-3c153561-f1f0-40cf-b691-d8de1926b293.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129791315-7796b53f-80df-4a33-844b-e43625dd7659.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129791722-a239d55c-0790-4829-9a0c-4d6cb7892e17.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129791991-d0a1b9ae-5748-48e4-a617-80159473e443.png)
+![image](https://user-images.githubusercontent.com/45603878/129792102-6d150087-ffa4-43ef-91ff-64d0d6f846b2.png)
+![image](https://user-images.githubusercontent.com/45603878/129792203-7852ddb4-379c-4f74-b242-3b13bd8688e6.png)
+
 
 # Node中的模块系统
 
@@ -195,16 +226,20 @@ server.listen(3000,function(){
 - EcmaScript语言
   - 和浏览器一样，在Node中没有Bom和Dom
 
-- 核心模块
+- 核心模块 https://nodejs.org/dist/latest-v8.x/docs/api/
   - 文件操作的fs
   - http服务操作的http
   - url路径操作模块
   - path路径处理模块
   - os操作系统信息
+  - ![image](https://user-images.githubusercontent.com/45603878/129793442-4bbadbab-e3c3-4002-b139-16a4e6542d05.png)
+
 - 第三方模块
   - art-template
   - 必须通过npm来下载才可以使用
 - 自己写的模块
+  - 相对路径必须加 ./
+  - 可以省略后缀名
   - 自己创建的文件
 
 
@@ -215,6 +250,12 @@ server.listen(3000,function(){
 - 通信规则
   - 加载require
   - 导出exports
+![image](https://user-images.githubusercontent.com/45603878/129800982-fbb83c57-e22e-4c7d-b376-04ae50b6bef9.png)
+![image](https://user-images.githubusercontent.com/45603878/129801177-000d99ac-f943-47cc-b6bd-bfe2e41965cd.png)
+bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块作用域
+![image](https://user-images.githubusercontent.com/45603878/129801410-8740601d-8be9-4ecb-b703-b4e6e59afdaa.png)
+超出文件的都不管用，外部访问不到内部，内部也访问不到外部
+
 
 ## CommonJS模块规范
 
@@ -257,6 +298,8 @@ server.listen(3000,function(){
     };
     exports.d = 'hello';
     ```
+![image](https://user-images.githubusercontent.com/45603878/129802883-31336cea-0daa-44b2-ac49-fa361feda3b9.png)
+
 
     
 
