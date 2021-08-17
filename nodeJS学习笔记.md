@@ -21,12 +21,12 @@
     - 运维部署
   - 多人社区
 
-![image-20200317114503403](C:\Users\A\AppData\Roaming\Typora\typora-user-images\image-20200317114503403.png)
+![image](https://user-images.githubusercontent.com/45603878/129755833-d3cb292a-4eea-4ba0-8fef-0f30a6fd7ff1.png)
 
 ## Node.js是什么
 
 - Node.js是JavaScript 运行时
-- 通俗易懂的讲，Node.js是JavaScript的运行平台
+- 通俗易懂的讲，Node.js是JavaScript的运行平台，JS可以脱离浏览器运行
 - Node.js既不是语言，也不是框架，它是一个平台
 - 浏览器中的JavaScript
   - EcmaScript
@@ -39,7 +39,7 @@
   - Bom
   - Dom
 - Node.js中的JavaScript
-  - 没有Bom，Dom
+  - 没有Bom，Dom，服务端不处理DOM
   - EcmaScript
   - 在Node中这个JavaScript执行环境为JavaScript提供了一些服务器级别的API
     - 例如文件的读写
@@ -62,7 +62,7 @@
 
 ## Node能做什么
 
-- web服务器后台
+- web服务器后台，Java能做的都能做
 - 命令行工具
   - npm(node)
   - git(c语言)
@@ -73,6 +73,8 @@
   - webpack
   - gulp
   - npm
+
+![image](https://user-images.githubusercontent.com/45603878/129758078-85f4f2cd-29f9-492a-af0c-6f2acc272f7d.png)
 
 # 起步
 
