@@ -299,6 +299,9 @@ bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块�
     exports.d = 'hello';
     ```
 ![image](https://user-images.githubusercontent.com/45603878/129802883-31336cea-0daa-44b2-ac49-fa361feda3b9.png)
+可以开启多个服务，但是这些服务的端口号要不一样
+还可以写一个5000端口的文件，比较3000和5000端口的浏览器返回结果
+![image](https://user-images.githubusercontent.com/45603878/129820470-9ed32f73-ea64-4313-b920-27cd6f850456.png)
 
 
     
@@ -352,6 +355,9 @@ module.exports.foo = 'bar';
 	导出单个成员：exports.xxx = xxx;
 	导出多个成员：module.exports 或者 modeule.exports = {};
 ```
+
+IP地址和端口号
+https://www.bilibili.com/video/BV1Ns411N7HU?p=14
 
 ## 总结
 
@@ -981,6 +987,7 @@ app.use(function (req, res) {
   res.end(JSON.stringify(req.body, null, 2))
 })
 ```
+![image](https://user-images.githubusercontent.com/45603878/129820888-f8781bcf-7042-49dd-aa77-e21918be1dcf.png)
 
 ### 在Express中配置使用`express-session`插件操作
 
