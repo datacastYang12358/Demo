@@ -282,6 +282,18 @@ bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块�
   - 执行被加载模块中的代码
   - 得到被加载模块中的`exports`导出接口对象
 
+![image](https://user-images.githubusercontent.com/45603878/129802883-31336cea-0daa-44b2-ac49-fa361feda3b9.png)
+可以开启多个服务，但是这些服务的端口号要不一样
+还可以写一个5000端口的文件，比较3000和5000端口的浏览器返回结果
+![image](https://user-images.githubusercontent.com/45603878/129820470-9ed32f73-ea64-4313-b920-27cd6f850456.png)
+
+
+// 在 Node 中，每个模块内部都有一个自己的 module 对象
+// 该 module 对象中，有一个成员叫：exports 也是一个对象
+// 也就是说如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中    
+![image](https://user-images.githubusercontent.com/45603878/130003080-59460ca0-5b82-4293-b895-91176d0519cd.png)
+P40跳过P29
+
   ### 导出`exports`
 
   - Node中是模块作用域，默认文件中所有的成员只在当前模块有效
@@ -300,13 +312,6 @@ bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块�
     };
     exports.d = 'hello';
     ```
-![image](https://user-images.githubusercontent.com/45603878/129802883-31336cea-0daa-44b2-ac49-fa361feda3b9.png)
-可以开启多个服务，但是这些服务的端口号要不一样
-还可以写一个5000端口的文件，比较3000和5000端口的浏览器返回结果
-![image](https://user-images.githubusercontent.com/45603878/129820470-9ed32f73-ea64-4313-b920-27cd6f850456.png)
-
-
-    
 
     导出单个成员（拿到的就是函数，字符串）：
 
