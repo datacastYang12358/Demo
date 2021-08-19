@@ -259,6 +259,8 @@ bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块�
 
 ## CommonJS模块规范
 
+![image](https://user-images.githubusercontent.com/45603878/129960808-8927877e-d71e-493c-926b-0b3c57766901.png)
+
 在Node中的JavaScript还有一个重要的概念，模块系统。
 
 - 模块作用域
@@ -358,6 +360,52 @@ module.exports.foo = 'bar';
 
 IP地址和端口号
 https://www.bilibili.com/video/BV1Ns411N7HU?p=14
+模板字符串
+![image](https://user-images.githubusercontent.com/45603878/129969647-2cd213fe-1c6f-4778-a7e7-24da63d9bc27.png)
+分号问题
+![image](https://user-images.githubusercontent.com/45603878/129970617-e4906761-dc67-49b9-afb9-84e90c8af3cf.png)
+
+基本模板3步走
+![image](https://user-images.githubusercontent.com/45603878/129971468-b60d22ca-3b2e-4f31-b67a-fee29909e8f2.png)
+![image](https://user-images.githubusercontent.com/45603878/129972082-55b4d448-eaf4-46f7-9d13-15351447184a.png)
+![image](https://user-images.githubusercontent.com/45603878/129971955-3cfe5111-5b2a-47ed-b819-3f08b6355e87.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129972271-088f5ee6-3991-4331-9646-d3b15db62673.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129972373-903bed19-9dc1-4c05-9062-d6be9aaec631.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129983454-5a53442c-9107-4694-97bb-99718e1b4a50.png)
+效果图
+![image](https://user-images.githubusercontent.com/45603878/129983488-50c6290d-464e-4492-a3e7-0e620c8dc3c7.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129983791-89bbcfe3-f029-4187-b086-f2e83359ccd9.png)
+![image](https://user-images.githubusercontent.com/45603878/129983923-dc450560-e726-4e4f-a976-49426c1bcc84.png)
+
+动态读取目录dir
+![image](https://user-images.githubusercontent.com/45603878/129984860-cc24e9c7-a540-4874-a622-04cd0e2a0d6a.png)
+![image](https://user-images.githubusercontent.com/45603878/129984809-19d5524b-3e95-400b-a925-c4c902c5a8cb.png)
+代码路径在C:\dapro201806\最新九章视频\full stack40\nodeJs\02\code
+![image](https://user-images.githubusercontent.com/45603878/129985671-d04e2dd7-115b-431e-a51d-67760dabcc44.png)
+
+https://aui.github.io/art-template/
+```npm install art-template --save```
+cmd里自动下载安装
+![image](https://user-images.githubusercontent.com/45603878/129986066-acf0b6cb-f32b-4a56-99a9-4fe1a902ab56.png)
+注意：在浏览器中需要引用 lib/template-web.js 文件
+
+    强调：模板引擎不关心你的字符串内容，只关心自己能认识的模板标记语法，例如 {{}}
+    {{}} 语法被称之为 mustache 语法，八字胡啊。
+![image](https://user-images.githubusercontent.com/45603878/129986414-e77b05b8-d109-4a6f-8e2d-e94ea62e68df.png)
+![image](https://user-images.githubusercontent.com/45603878/129986542-7f31b3d1-7cf9-4f04-9128-00dbf3600f0f.png)
+![image](https://user-images.githubusercontent.com/45603878/129991285-6c8d3ddd-fad1-4280-9de7-a1a29b957444.png)
+![image](https://user-images.githubusercontent.com/45603878/129991632-a58e99cf-8804-4f4a-96f7-6945675ac237.png)
+
+# 客户端渲染
+![image](https://user-images.githubusercontent.com/45603878/129992941-be772ff0-8f1d-4770-92dc-e334c50fc735.png)
+
+![image](https://user-images.githubusercontent.com/45603878/129993104-48d4b7d6-9b4f-4d63-9e53-8464f193c28a.png)
+![image](https://user-images.githubusercontent.com/45603878/129993439-532e45a3-02ef-48ce-9540-dced36a17d28.png)
+
 
 ## 总结
 
@@ -421,9 +469,10 @@ server.listen(3000, function () {
 
 # require的加载规则
 
-- 核心模块
+- 核心模块 ![image](https://user-images.githubusercontent.com/45603878/129960970-f4cc1bd5-7957-4b6f-bcc6-31b0962a275c.png)
 
-  - 模块名
+  - 模块名 
+![image](https://user-images.githubusercontent.com/45603878/129961144-ca8e7e8b-486f-4ecf-a02b-4ad1a4da8b40.png)
 
 - 第三方模块
 
@@ -433,7 +482,8 @@ server.listen(3000, function () {
 
   - 路径
 
-
+JS 代码风格细则
+https://standardjs.com/readme-zhcn.html
 
 
 ## require的加载规则：
@@ -521,7 +571,9 @@ fs.readFile('./index.txt',function(err,data){
 // 这里省略了.也是磁盘根目录
 require('./index')('hello')
 ```
-
+![image](https://user-images.githubusercontent.com/45603878/129960400-b2d38a18-d03b-4d0c-a77f-e0bb4c79bc2a.png)
+![image](https://user-images.githubusercontent.com/45603878/129959614-d416fa94-786e-4ce7-a5a2-385040a00fc8.png)
+利用fs读文件，读到文件之后响应回去，而且如果读的文件有什么改地不用重启node，node动态读取会随时更新，
 
 
 # npm
