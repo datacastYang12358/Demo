@@ -1227,16 +1227,16 @@ javascript模块化：
 - 初始化
 - 模板处理
 
-#### 路由设计 暂停61
+#### 路由设计 
 
-|      请求方法|   请求路径   |  get参数    |   post参数   |    备注  |
-| ---- | :--- | :--- | ---- | :--- |
-|    GET  |   /students   |      |      |   渲染首页   |
-| GET | /students/new | | |渲染添加学生页面  |
-| POST|/students/new||name,age,gender,hobbies|处理添加学生请求|
-|GET|/students/edit|id||渲染编辑页面|
-|POST|/students/edit||id,name,age,gender,hobbies|处理编辑请求|
-|GET|/students/delete|id||处理删除请求|
+|      请求方法|   请求路径     |  get参数  |   post参数               |    备注         |
+| ----        | :---           | :---     | ----                     | :---            |
+|    GET      |   /students    |          |                          |   渲染首页      |
+|    GET      | /students/new  |          |                          |渲染添加学生页面  |
+|    POST     |/students/new   |          |name,age,gender,hobbies   |处理添加学生请求  |
+|    GET      |/students/edit  |  id      |                          |渲染编辑页面      |
+|    POST     |/students/edit  |          |id,name,age,gender,hobbies|处理编辑请求      |
+|    GET      |/students/delete|  id      |                          |处理删除请求      |
 
 #### 提取路由模块
 
@@ -1298,17 +1298,50 @@ router.get('/students/delete',function(req,res){
 module.exports = router;
 
 ```
-
+具体改动见C:\dapro201806\最新九章视频\full stack40\nodeJs\04\code\crud-express
+里面new.html的改动见https://v3.bootcss.com/css/#forms
+暂停64
 app.js:
 
 ```javascript
+/**
+ * app.js 入门模块
+ * 职责：
+ *   创建服务
+ *   做一些服务相关配置
+ *     模板引擎
+ *     body-parser 解析表单 post 请求体
+ *     提供静态资源服务
+ *   挂载路由
+ *   监听端口启动服务
+ */
 var router = require('./router');
-
+var express = require('express')
 // router(app);
 // 把路由容器挂载到app服务中
 // 挂载路由
-app.use(router);
+var app = express()
+app.use('/node_modules/', express.static('./node_modules/'))
+app.use('/public/', express.static('./public/'))
+
+app.engine('html', require('express-art-template'))
+
+// 配置模板引擎和 body-parser 一定要在 app.use(router) 挂载路由之前
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
+// 把路由容器挂载到 app 服务中
+app.use(router)
+
+app.listen(3000, function () {
+  console.log('running 3000...')
+})
+
+module.exports = app
 ```
+![image](https://user-images.githubusercontent.com/45603878/130266653-d74aa27e-4b6b-4c18-9552-b11f5a8273a1.png)
 
 
 
