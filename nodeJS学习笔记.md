@@ -944,7 +944,8 @@ app.listen(3000,function(){
 
 ##### 基本路由
 
-路由：
+路由：一张表，有具体的映射关系，执行对应的处理函数
+![image](https://user-images.githubusercontent.com/45603878/130168388-65af9803-f25e-4445-ac9b-2a48d1cf512b.png)
 
 - 请求方法
 
@@ -979,6 +980,7 @@ app.use(express.static('files'));
 
 app.use('/stataic',express.static('public'));
 ```
+![image](https://user-images.githubusercontent.com/45603878/130168626-b1b5a987-1982-4d45-acd7-7b9365d92d22.png)
 
 ```javascript
 // 引入express
@@ -987,7 +989,12 @@ var express = require('express');
 // 创建app
 var app = express();
 
+跳过P49-51
 // 开放静态资源
+// 公开指定目录，你就可以直接通过 /public/xx 的方式访问 public 目录中的所有资源了
+app.use('/public/', express.static('./public/'))
+app.use('/static/', express.static('./static/'))
+app.use('/node_modules/', express.static('./node_modules/'))
 // 1.当以/public/开头的时候，去./public/目录中找对应资源
 // 访问：http://127.0.0.1:3000/public/login.html
 app.use('/public/',express.static('./public/')); 
@@ -1023,7 +1030,7 @@ npm install --save art-template
 npm install --save express-art-template
 
 //两个一起安装
-npm i --save art-template express-art-template
+npm i --save art-template express-art-template 
 ```
 
 配置：
@@ -1042,6 +1049,18 @@ app.get('/',function(req,res){
     });
 })
 ```
+// 配置使用 art-template 模板引擎
+// 第一个参数，表示，当渲染以 .art 结尾的文件的时候，使用 art-template 模板引擎
+// express-art-template 是专门用来在 Express 中把 art-template 整合到 Express 中
+// 虽然外面这里不需要记载 art-template 但是也必须安装
+// 原因就在于 express-art-template 依赖了 art-template
+app.engine('html', require('express-art-template'))
+
+// Express 为 Response 相应对象提供了一个方法：render
+// render 方法默认是不可以使用，但是如果配置了模板引擎就可以使用了
+// res.render('html模板名', {模板数据})
+// 第一个参数不能写路径，默认会去项目中的 views 目录查找该模板文件
+// 也就是说 Express 有一个约定：开发人员把所有的视图文件都放到 views 目录中
 
 如果希望修改默认的`views`视图渲染存储目录，可以：
 
@@ -1049,6 +1068,33 @@ app.get('/',function(req,res){
 // 第一个参数views千万不要写错
 app.set('views',目录路径);
 ```
+
+重写留言板P56
+C:\dapro201806\最新九章视频\full stack40\nodeJs\04\code\feedback-express
+```
+// 当以 POST 请求 /post 的时候，执行指定的处理函数
+// 这样的话我们就可以利用不同的请求方法让一个请求路径使用多次
+app.post('/post', function (req, res) {
+  // 1. 获取表单 POST 请求体数据
+  // 2. 处理
+  // 3. 发送响应
+
+  // req.query 只能拿 get 请求参数
+  // console.log(req.query)
+
+  var comment = req.body
+  comment.dateTime = '2017-11-5 10:58:51'
+  comments.unshift(comment)
+
+  // res.send
+  // res.redirect
+  // 这些方法 Express 会自动结束响应
+  res.redirect('/')
+  // res.statusCode = 302
+  // res.setHeader('Location', '/') 
+})
+```
+
 
 ##### 在Express中获取表单请求数据
 
@@ -1105,6 +1151,14 @@ app.use(function (req, res) {
 ```
 ![image](https://user-images.githubusercontent.com/45603878/129820888-f8781bcf-7042-49dd-aa77-e21918be1dcf.png)
 
+
+
+https://www.bilibili.com/video/BV1Ns411N7HU?p=58&spm_id_from=pageDriver 有具体操作步骤，还有59
+https://v3.bootcss.com/examples/dashboard/
+![image](https://user-images.githubusercontent.com/45603878/130175794-e0022bc7-425c-45ea-8b48-e55ed4dd11d8.png)
+
+
+
 ### 在Express中配置使用`express-session`插件操作
 
 > 参考文档：https://github.com/expressjs/session
@@ -1153,7 +1207,7 @@ delete req.session.foo
 默认Session数据时内存储数据，服务器一旦重启，真正的生产环境会把Session进行持久化存储。
 
 ### 利用Express实现ADUS项目
-
+https://www.bilibili.com/video/BV1Ns411N7HU?p=59
 #### 模块化思想
 
 模块如何划分:
@@ -1173,7 +1227,7 @@ javascript模块化：
 - 初始化
 - 模板处理
 
-#### 路由设计
+#### 路由设计 暂停61
 
 |      请求方法|   请求路径   |  get参数    |   post参数   |    备注  |
 | ---- | :--- | :--- | ---- | :--- |
