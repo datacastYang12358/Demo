@@ -292,7 +292,10 @@ bbb不会覆盖aaa，因为在node中没有全局作用域，它是文件模块�
 // 该 module 对象中，有一个成员叫：exports 也是一个对象
 // 也就是说如果你需要对外导出成员，只需要把导出的成员挂载到 module.exports 中    
 ![image](https://user-images.githubusercontent.com/45603878/130003080-59460ca0-5b82-4293-b895-91176d0519cd.png)
-P40跳过P29
+
+
+
+
 
   ### 导出`exports`
 
@@ -328,6 +331,18 @@ P40跳过P29
         return x+y;
     }
     ```
+![image](https://user-images.githubusercontent.com/45603878/130159006-07ce58b0-3f53-404e-9a3a-585afa672ff7.png)
+a还是123，b还是456，中间是断开的
+给 exports 赋值会断开和 module.exports 之间的引用
+同理，给 module.exports 重新赋值也会断开
+```
+	// 谁来 require 我，谁就得到 module.exports
+	// 默认在代码的最后有一句：
+	// 一定要记住，最后 return 的是 module.exports
+	// 不是 exports
+	// 所以你给 exports 重新赋值不管用，
+	// return module.exports
+```
 
     也可以通过以下方法来导出多个成员：
 
@@ -469,22 +484,53 @@ app.js位于C:\dapro201806\最新九章视频\full stack40\nodeJs\02\code\feedba
 	提供源头：
     	原生js是es5提供的（不兼容IE8）,
         jQuery的each是jQuery第三方库提供的（如果要使用需要用2以下的版本也就是1.版本）,它的each方法主要用来遍历jQuery实例对象（伪数组）,同时也可以做低版本forEach的替代品,jQuery的实例对象不能使用forEach方法，如果想要使用必须转为数组（[].slice.call(jQuery实例对象)）才能使用
+['a', 'b', 'c'].slice(1)  ==>  （2)["b", "c"]
+
 2.模块中导出多个成员和导出单个成员
 3.301和302的区别：
 	301永久重定向,浏览器会记住
     302临时重定向
 4.exports和module.exports的区别:
 	每个模块中都有一个module对象
-    module对象中有一个exports对象
-    我们可以把需要导出的成员都挂载到module.exports接口对象中
+    	module对象中有一个exports对象
+    	我们可以把需要导出的成员都挂载到module.exports接口对象中
 	也就是`module.exports.xxx = xxx`的方式
-    但是每次写太多了就很麻烦，所以Node为了简化代码，就在每一个模块中都提供了一个成员叫`exports`
-    `exports === module.exports`结果为true,所以完全可以`exports.xxx = xxx`
+    	但是每次写太多了就很麻烦，所以Node为了简化代码，就在每一个模块中都提供了一个成员叫`exports`
+    	`exports === module.exports`结果为true,所以完全可以`exports.xxx = xxx`
     当一个模块需要导出单个成员的时候必须使用`module.exports = xxx`的方式，=,使用`exports = xxx`不管用,因为每个模块最终return的是module.exports,而exports只是module.exports的一个引用,所以`exports`即使重新赋值,也不会影响`module.exports`。
     有一种赋值方式比较特殊：`exports = module.exports`这个用来新建立引用关系的。
     
 ```
+```javascript
+Array.prototype.mySlice = function () {
+  var start = 0
+  var end = this.length
+  if (arguments.length === 1) {
+    start = arguments[0]
+  } else if (arguments.length === 2) {
+    start = arguments[0]
+    end = arguments[1]
+  }
+  var tmp = []
+  for (var i = start; i < end; i++) {
+    // fakeArr[0]
+    // fakeArr[1]
+    // fakeArr[2]
+    tmp.push(this[i])
+  }
+  return tmp
+}
 
+var fakeArr = {
+  0: 'abc',
+  1: 'efg',
+  2: 'haha',
+  length: 3
+}
+
+// 所以你就得到了真正的数组。 
+[].mySlice.call(fakeArr)
+```
 # require的加载规则
 
 - 核心模块 ![image](https://user-images.githubusercontent.com/45603878/129960970-f4cc1bd5-7957-4b6f-bcc6-31b0962a275c.png)
@@ -503,16 +549,16 @@ app.js位于C:\dapro201806\最新九章视频\full stack40\nodeJs\02\code\feedba
 JS 代码风格细则
 https://standardjs.com/readme-zhcn.html
 
-
+跳过P29-P39
 ## require的加载规则：
 
-- 优先从缓存加载
+- 1.优先从缓存加载，不会重复加载
 
 - 判断模块标识符
 
-  - 核心模块
-  - 自己写的模块（路径形式的模块）
-  - 第三方模块（node_modules）
+  - 2.核心模块
+  - 3.自己写的模块（路径形式的模块）
+  - 4.第三方模块（node_modules）
     - 第三方模块的标识就是第三方模块的名称（不可能有第三方模块和核心模块的名字一致）
     - npm
       - 开发人员可以把写好的框架库发布到npm上
@@ -640,7 +686,7 @@ npm install --global npm
   - 查看具体命令的使用帮助（npm uninstall --help）
 
 ### 解决npm被墙问题
-
+跳过P46
 npm存储包文件的服务器在国外，有时候会被墙，速度很慢，所以需要解决这个问题。
 
 > https://developer.aliyun.com/mirror/NPM?from=tnpm淘宝的开发团队把npm在国内做了一个镜像（也就是一个备份）。
